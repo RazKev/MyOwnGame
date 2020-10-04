@@ -19,7 +19,8 @@ public class StageManager extends Application
 		primaryStage.setFullScreen(true);
 		primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		
-		primaryStage.setScene(Menu.erstelleSzene(primaryStage));
+		Scene scene = new Scene(layout);
+		primaryStage.setScene(Menu.erstelleSzene(primaryStage,scene));
 		//Audio mainAudio = new Audio();   
 		Audio.erstelleAudio("src/songs/main_backgroundsong.mp3");
 		
@@ -31,6 +32,8 @@ public class StageManager extends Application
 	{
 		launch(args);
 	}
+
+	
 
 	
 	

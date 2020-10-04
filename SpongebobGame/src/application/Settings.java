@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class Settings 
 {
-	public static Scene erstelleSzene(Stage primaryStage)
+	public static void erstelleSzene(Stage primaryStage,Scene scene)
 	{
 		
 		StackPane titlepane = new StackPane();
@@ -41,7 +41,7 @@ public class Settings
 		
 		back.setOnMouseClicked(event -> 
 		{
-			primaryStage.setScene(Menu.erstelleSzene(primaryStage));
+			primaryStage.setScene(Menu.erstelleSzene(primaryStage, scene));
 			Audio.stop();
 			Audio.erstelleAudio("src/songs/main_backgroundsong.mp3");
 			
@@ -55,7 +55,6 @@ public class Settings
 		Scene settingsScene = new Scene(menuBox,0,0);
 		settingsScene.getStylesheets().add(Menu.class.getResource("Menu.css").toExternalForm());
 		
-		return settingsScene;
 		
 	}
 	

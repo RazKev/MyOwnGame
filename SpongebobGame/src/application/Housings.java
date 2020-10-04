@@ -8,11 +8,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Housings 
-{
-
-	
-	public static Scene erstelleSzene(Stage primaryStage)
+{	
+	public static void erstelleSzene(Stage primaryStage, Scene scene)
 	{
+		
 		AnchorPane anchorPane = new AnchorPane();
 		
 		Button button1 = new Button("SpongeBob Housing");
@@ -22,7 +21,7 @@ public class Housings
 		{
 			Audio.stop();
 			Audio.erstelleAudio("src/songs/main_backgroundsong.mp3");
-			primaryStage.setScene(Menu.erstelleSzene(primaryStage)); 
+			primaryStage.setScene(Menu.erstelleSzene(primaryStage, scene)); 
 		});  
 		
 		anchorPane.widthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
@@ -37,12 +36,11 @@ public class Housings
 		
 		VBox layout1 = new VBox(20);     
 		anchorPane.getChildren().addAll(button1);
-		
+
 		
 		Scene housingsScene = new Scene(anchorPane, 300, 250);
 		housingsScene.getStylesheets().add(Menu.class.getResource("Housings.css").toExternalForm());
 		
-		return housingsScene;
 		
 	}
 	
