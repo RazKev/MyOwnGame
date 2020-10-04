@@ -18,7 +18,12 @@ public class Housings
 		Button button1 = new Button("SpongeBob Housing");
 		button1.setMinSize(200, 200);
 		
-		button1.setOnAction(e -> primaryStage.setScene(Menu.erstelleSzene(primaryStage)));   
+		button1.setOnAction(e -> 
+		{
+			Audio.stop();
+			Audio.erstelleAudio("src/songs/main_backgroundsong.mp3");
+			primaryStage.setScene(Menu.erstelleSzene(primaryStage)); 
+		});  
 		
 		anchorPane.widthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
 	        button1.setLayoutX(newValue.doubleValue()/2 - (button1.widthProperty().getValue() / 2));
