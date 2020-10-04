@@ -17,31 +17,31 @@ import javafx.stage.Stage;
 
 public class Settings 
 {
-	public static Scene erstelleSzene(Stage primaryStage)
+	public static void erstelleSzene(Scene scene)
 	{
-		
+		scene.getStylesheets().clear();
 		StackPane titlepane = new StackPane();
 		VBox menuBox = new VBox();
 		menuBox.setAlignment(Pos.CENTER);
 		
 		//Titel oder Uberschrift
 		
-		Text textTitle = new Text("Settings");
+		Text textTitle = new Text("SETTINGS");
 		textTitle.setFill(Color.WHITE);
-		textTitle.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD,50));
+		textTitle.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD,70));
 		textTitle.setTranslateY(-150);
 		titlepane.getChildren().addAll(textTitle);
 		
-		StackPane gamma = erstelleMenuPunkt("Gamma: ");
-		StackPane credits = erstelleMenuPunkt("Credits");
-		StackPane back = erstelleMenuPunkt("Back");
+		StackPane gamma = erstelleMenuPunkt("GAMMA ");
+		StackPane credits = erstelleMenuPunkt("CREDITS");
+		StackPane back = erstelleMenuPunkt("BACK");
 		
 		gamma.setOnMouseClicked(event -> System.out.println("Gamma Setting Clicked!"));
 		credits.setOnMouseClicked(event -> System.out.println("Creates By Me"));
 		
 		back.setOnMouseClicked(event -> 
 		{
-			primaryStage.setScene(Menu.erstelleSzene(primaryStage));
+			Menu.erstelleSzene(scene);
 			Audio.stop();
 			Audio.erstelleAudio("src/songs/main_backgroundsong.mp3");
 			
@@ -52,32 +52,32 @@ public class Settings
 		
 		fuegeZumMenuHinzu(menuBox, gamma, credits, back);
 		
-		Scene settingsScene = new Scene(menuBox,0,0);
-		settingsScene.getStylesheets().add(Menu.class.getResource("Menu.css").toExternalForm());
-		
-		return settingsScene;
-		
+		scene.getStylesheets().add(Menu.class.getResource("Settings.css").toExternalForm());
+		scene.setRoot(menuBox);
 	}
 	
 	private static StackPane erstelleMenuPunkt(String name)
 	{		
 		StackPane stackpane = new StackPane();
 		
-		Stop[] stops = new Stop[4];
-		stops[0] = new Stop(0,Color.DARKVIOLET);
-		stops[1] = new Stop(0.1,Color.BLACK);
-		stops[2] = new Stop(0.9,Color.BLACK);
-		stops[3] = new Stop(1,Color.DARKVIOLET);
+		Stop[] stops = new Stop[6];
+		stops[0] = new Stop(0,Color.YELLOW);
+		stops[1] = new Stop(0.1,Color.LIME);
+		stops[2] = new Stop(0.3,Color.BLACK);
+		stops[3] = new Stop(0.5,Color.BLACK);
+		stops[4] = new Stop(0.9,Color.LIME);
+		stops[5] = new Stop(1,Color.YELLOW);
 		
 		LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
 		
-		Rectangle bg = new Rectangle(200,30);
-		bg.setOpacity(0.4);
+		Rectangle bg = new Rectangle(400,60);
+		bg.setOpacity(0.55);
+		
 		
 		Text text = new Text(name);
 		
-		text.setFill(Color.DARKGRAY);
-		text.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD,22));
+		text.setFill(Color.YELLOW);
+		text.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD,22));
 	
 		
 		stackpane.setAlignment(Pos.CENTER);
@@ -85,13 +85,13 @@ public class Settings
 		bg.setOnMouseEntered(event -> 
 		{
 			bg.setFill(gradient);
-			text.setFill(Color.WHITE);
+			text.setFill(Color.LIME);
 		});
 		
 		bg.setOnMouseExited(event ->
 		{
 			bg.setFill(Color.BLACK);
-			text.setFill(Color.DARKGRAY);
+			text.setFill(Color.YELLOW);
 		
 		});
 		
@@ -105,6 +105,7 @@ public class Settings
 		{
 			bg.setFill(gradient);
 		});
+		
 		
 		stackpane.getChildren().addAll(bg,text);
 		

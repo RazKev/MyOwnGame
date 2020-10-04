@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class Menu 
 {	
-	public static Scene erstelleSzene(Stage primaryStage)
+	public static Scene erstelleSzene(Scene scene)
 	{
 		StackPane titlepane = new StackPane();
 		VBox menuBox = new VBox();
@@ -38,15 +38,14 @@ public class Menu
 		
 		start.setOnMouseClicked(event ->
 		{
-			primaryStage.setScene(Housings.erstelleSzene(primaryStage));
-			primaryStage.setFullScreen(true);
+			Housings.erstelleSzene(scene);
 			Audio.stop();
 			Audio.erstelleAudio("src/songs/housings_backgroundsong.mp3");
 			
 		}); 
 		settings.setOnMouseClicked(event -> 
 		{
-			primaryStage.setScene(Settings.erstelleSzene(primaryStage));
+			Settings.erstelleSzene(scene);
 			Audio.stop();
 			Audio.erstelleAudio("src/songs/main_backgroundsong.mp3");
 			
@@ -58,11 +57,9 @@ public class Menu
 		
 		fuegeZumMenuHinzu(menuBox, start, settings, beende);
 		
-		Scene s2 = new Scene(menuBox,0,0);
-		s2.getStylesheets().add(Menu.class.getResource("Menu.css").toExternalForm());
-		
-		
-		return s2;
+		scene.setRoot(menuBox);
+		scene.getStylesheets().add(Menu.class.getResource("Menu.css").toExternalForm());
+		return scene;
 		
 	}
 	
